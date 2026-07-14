@@ -1,0 +1,56 @@
+// Color tokens. Centralized here so both themes stay in lockstep with the same variable names.
+
+:root,
+[data-theme='light'] {
+  --color-primary: #2563eb;
+  --color-primary-hover: #1d4ed8;
+  --color-primary-contrast: #ffffff;
+  --color-accent: #f59e0b;
+
+  --color-success: #16a34a;
+  --color-danger: #dc2626;
+  --color-danger-bg: #fef2f2;
+
+  --color-bg: #f8fafc;
+  --color-bg-elevated: #ffffff;
+  --color-bg-subtle: #f1f5f9;
+  --color-bg-overlay: rgba(15, 23, 42, 0.5);
+
+  --color-border: #e2e8f0;
+  --color-border-strong: #cbd5e1;
+
+  --color-text: #0f172a;
+  --color-text-muted: #475569;
+  --color-text-subtle: #94a3b8;
+
+  --color-focus-ring: #2563eb;
+}
+
+[data-theme='dark'] {
+  --color-primary: #60a5fa;
+  --color-primary-hover: #93c5fd;
+  --color-primary-contrast: #0b1220;
+  --color-accent: #fbbf24;
+
+  --color-success: #4ade80;
+  --color-danger: #f87171;
+  --color-danger-bg: #3b0d0d;
+
+  --color-bg: #0f172a;
+  --color-bg-elevated: #1e293b;
+  --color-bg-subtle: #172033;
+  --color-bg-overlay: rgba(0, 0, 0, 0.65);
+
+  --color-border: #2d3b52;
+  --color-border-strong: #3d4f6b;
+
+  --color-text: #f1f5f9;
+  --color-text-muted: #b7c3d6;
+  --color-text-subtle: #7c8aa3;
+
+  --color-focus-ring: #93c5fd;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.5);
+}
