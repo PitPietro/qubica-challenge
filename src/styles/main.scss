@@ -1,4 +1,7 @@
+@use 'tokens';
 @use 'themes';
+@use 'reset';
+
 body {
   background-color: var(--color-bg);
   color: var(--color-text);
@@ -14,4 +17,23 @@ h4 {
   font-family: var(--font-family-heading), serif;
   font-weight: var(--font-weight-semibold);
   line-height: var(--line-height-tight);
+}
+
+.skip-link {
+  @include visually-hidden;
+
+  &:focus {
+    position: fixed;
+    top: var(--space-sm);
+    left: var(--space-sm);
+    width: auto;
+    height: auto;
+    clip: auto;
+    z-index: 1000;
+    background: var(--color-bg-elevated);
+    color: var(--color-text);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-md);
+  }
 }
