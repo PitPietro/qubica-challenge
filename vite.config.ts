@@ -15,6 +15,7 @@ export default defineConfig({
     preprocessorOptions: {
       scss: {
         loadPaths: [fileURLToPath(new URL('./src/styles', import.meta.url))],
+        additionalData: `@use "mixin" as *;\n`,
       },
     },
   },
