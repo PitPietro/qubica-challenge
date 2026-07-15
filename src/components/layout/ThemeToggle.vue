@@ -12,7 +12,9 @@ const theme = useThemeStore()
     :aria-label="theme.theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'"
     @click="theme.toggleTheme"
   >
-    <span aria-hidden="true">{{ theme.theme === 'dark' ? '🌙' : '☀️' }}</span>
+    <!-- https://symbl.cc/en/1F31E-sun-with-face-emoji/ -->
+    <!-- https://symbl.cc/en/1F319-crescent-moon-emoji/ -->
+    <span aria-hidden="true">{{ theme.theme === 'dark' ? '🌙' : '🌞' }}</span>
   </button>
 </template>
 
