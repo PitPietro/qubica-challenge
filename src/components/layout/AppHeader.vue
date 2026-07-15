@@ -1,16 +1,25 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
 import { useCartStore } from '@/stores/cart'
-
+import { useCatalogStore } from "@/stores/catalog.ts";
+import { useThemeStore } from "@/stores/theme.ts";
+import ThemeToggle from "@/components/layout/ThemeToggle.vue";
+import {formatCategoryLabel} from "@/utils/formatCategory.ts";
 
 const cart = useCartStore()
 const route = useRoute()
 const auth = useAuthStore()
-
+const catalog = useCatalogStore()
+useThemeStore()
 
 const isNavOpen = ref(false)
+
+onMounted(() => {
+  catalog.loadCategories()
+})
+
 const activeCategory = computed(() => (route.query.category as string | undefined) ?? null)
 
 function isActive(category: string | null): boolean {
@@ -28,7 +37,8 @@ function closeNav() {
   <header class="header">
     <div class="header__bar">
       <RouterLink :to="{ name: 'home' }" class="header__brand" @click="closeNav">
-        <span class="header__store-name">FakeStore</span>
+        <span class="header__logo" aria-hidden="true">️💸</span>
+        <span class="header__store-name">Qubica Fake Store</span>
       </RouterLink>
 
       <button
@@ -56,9 +66,21 @@ function closeNav() {
         >
           All
         </RouterLink>
+        <RouterLink
+            v-for="category in catalog.categories"
+            :key="category"
+            :to="{ name: 'home', query: { category } }"
+            class="header__nav-link"
+            :class="{ 'header__nav-link--active': isActive(category) }"
+            @click="closeNav"
+        >
+          {{ formatCategoryLabel(category) }}
+        </RouterLink>
       </nav>
 
       <div class="header__actions">
+        <ThemeToggle />
+
         <RouterLink :to="{ name: 'cart' }" class="header__icon-link" aria-label="Shopping cart" @click="closeNav">
           <span aria-hidden="true">🛒</span>
           <span v-if="cart.totalCount > 0" class="header__badge">{{ cart.totalCount }}</span>
