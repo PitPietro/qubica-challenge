@@ -3,11 +3,14 @@ import { computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
 import { useCartStore } from '@/stores/cart'
+import {useThemeStore} from "@/stores/theme.ts";
+import ThemeToggle from "@/components/layout/ThemeToggle.vue";
 
 
 const cart = useCartStore()
 const route = useRoute()
 const auth = useAuthStore()
+useThemeStore()
 
 
 const isNavOpen = ref(false)
@@ -59,6 +62,8 @@ function closeNav() {
       </nav>
 
       <div class="header__actions">
+        <ThemeToggle />
+
         <RouterLink :to="{ name: 'cart' }" class="header__icon-link" aria-label="Shopping cart" @click="closeNav">
           <span aria-hidden="true">🛒</span>
           <span v-if="cart.totalCount > 0" class="header__badge">{{ cart.totalCount }}</span>
