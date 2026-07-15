@@ -3,8 +3,11 @@ import { ref, watch } from 'vue'
 import { fetchProductById } from '@/services/products.service'
 import type { Product } from '@/types'
 import { formatPrice } from '@/utils/formatPrice'
+import {useCartStore} from "@/stores/cart.ts";
 
 const props = defineProps<{ id: number }>()
+
+const cart = useCartStore()
 
 const product = ref<Product | null>(null)
 const isLoading = ref(true)
@@ -31,6 +34,7 @@ watch(() => props.id, loadProduct, { immediate: true })
 
 function addToCart() {
   if (!product.value) return
+  cart.addToCart(product.value, quantity.value)
   justAdded.value = true
   window.setTimeout(() => {
     justAdded.value = false
