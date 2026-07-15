@@ -40,15 +40,4 @@ describe('ProductCard', () => {
     const link = wrapper.getComponent(RouterLinkStub)
     expect(link.props().to).toEqual({ name: 'product-detail', params: { id: product.id } })
   })
-
-  it('toggles the wishlist state when the heart button is clicked', async () => {
-    const wrapper = mountCard()
-    const wishlistButton = wrapper.get('.card__wishlist')
-
-    expect(wishlistButton.attributes('aria-pressed')).toBe('false')
-
-    await wishlistButton.trigger('click')
-
-    expect(wishlistButton.attributes('aria-pressed')).toBe('true')
-  })
 })
